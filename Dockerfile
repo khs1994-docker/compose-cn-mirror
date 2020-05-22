@@ -24,6 +24,8 @@ RUN set -x \
       && openssl enc -aes-128-cbc -d -a -in ~/.ssh/ssh.enc -out ~/.ssh/id_rsa \
           -K ${enc_k} \
           -iv ${enc_iv} \
+      && echo "StrictHostKeyChecking no" > ~/.ssh/config \
+      && echo "UserKnownHostsFile /dev/null" >> ~/.ssh/config \
       && chmod 600 ~/.ssh/id_rsa \
       && git config --global user.name "khs1994-merge-robot" \
       && git config --global user.email "ai@khs1994.com" \
